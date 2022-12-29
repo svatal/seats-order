@@ -1,11 +1,12 @@
 import * as b from "bobril";
-import { getHappiness } from "../alg/eval";
 import { ITable } from "../data/data";
-import { peopleList, seating } from "../data/model";
-import { Person } from "./person";
+import { IPersonWithHappiness, Person } from "./person";
 
-export function Table({ table }: { table: ITable }) {
-  const persons = peopleList.filter((p) => seating[p.id] === table.id);
+export interface ITableWithOccupiers extends ITable {
+  occupiers: IPersonWithHappiness[];
+}
+
+export function Table({ table }: { table: ITableWithOccupiers }) {
   return (
     <div
       style={{
@@ -22,8 +23,8 @@ export function Table({ table }: { table: ITable }) {
           gap: 2,
         }}
       >
-        {persons.map((p) => (
-          <Person person={p} happiness={getHappiness(p.id)} />
+        {table.occupiers.map((p) => (
+          <Person person={p} />
         ))}
       </div>
     </div>

@@ -1,13 +1,16 @@
 import * as b from "bobril";
-import { IProp, useState } from "bobril";
+import { useState } from "bobril";
 import { getHappiness } from "../alg/eval";
-import { peopleList } from "../data/model";
-import { sum, toRecord } from "../util";
+import { peopleList, seating, tableList } from "../data/model";
+import { toRecord } from "../util";
+import { Happiness } from "./happiness";
 import { Tables } from "./tables";
 
 export function App() {
-  const happinessList = peopleList.map((p) => getHappiness(p.id));
-  const happiness = toRecord(happinessList, (_, i) => peopleList[i].id);
+  const peopleWithHappiness = peopleList.map((p) => ({
+    ...p,
+    happiness: getHappiness(p.id),
+  }));
   const ratio = useState(0.5);
 
   return (
@@ -18,37 +21,16 @@ export function App() {
         gap: 20,
       }}
     >
-      <Happiness happinessList={happinessList} ratio={ratio} />
-      <Tables />
-    </div>
-  );
-}
-
-export function Happiness(p: {
-  ratio: IProp<number>;
-  happinessList: number[];
-}) {
-  const { ratio, happinessList } = p;
-  const minHappiness = Math.min(...happinessList);
-  const avgHappiness = happinessList.reduce(sum, 0) / happinessList.length;
-  const r = ratio();
-  const resultHappiness = r * avgHappiness + (1 - r) * minHappiness;
-  return (
-    <div>
-      <div>
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          value={r}
-          onChange={(v) => ratio(+v)}
-        />
-        {r.toFixed(2)}
-      </div>
-      <div>min happiness: {minHappiness.toFixed(2)}</div>
-      <div>avg happiness: {avgHappiness.toFixed(2)}</div>
-      <div>result happiness: {resultHappiness.toFixed(2)}</div>
+      <Happiness
+        happinessList={peopleWithHappiness.map((p) => p.happiness)}
+        ratio={ratio}
+      />
+      <Tables
+        tables={tableList.map((t) => ({
+          ...t,
+          occupiers: peopleWithHappiness.filter((p) => seating[p.id] === t.id),
+        }))}
+      />
     </div>
   );
 }

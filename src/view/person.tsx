@@ -1,13 +1,16 @@
 import * as b from "bobril";
 import { IPerson } from "../data/data";
 
-export function Person(p: { person: IPerson; happiness: number }) {
-  const { person, happiness } = p;
+export interface IPersonWithHappiness extends IPerson {
+  happiness: number;
+}
+
+export function Person({ person }: { person: IPersonWithHappiness }) {
   return (
     <div
       style={{
         gridRowEnd: `span ${person.plusOne ? 2 : 1}`,
-        backgroundColor: getColor(happiness),
+        backgroundColor: getColor(person.happiness),
         borderStyle: "solid",
         borderColor: "black",
         borderWidth: 1,
@@ -16,7 +19,7 @@ export function Person(p: { person: IPerson; happiness: number }) {
         marginBottom: 2,
       }}
     >
-      {person.name} - {happiness.toFixed(2)}
+      {person.name} - {person.happiness.toFixed(2)}
     </div>
   );
 }

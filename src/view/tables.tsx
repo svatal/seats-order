@@ -1,8 +1,7 @@
 import * as b from "bobril";
-import { tableList } from "../data/model";
-import { Table } from "./table";
+import { ITableWithOccupiers, Table } from "./table";
 
-export function Tables() {
+export function Tables({ tables }: { tables: ITableWithOccupiers[] }) {
   return (
     <div
       style={{
@@ -13,8 +12,8 @@ export function Tables() {
         gap: 10,
       }}
     >
-      {tableList.map((t) => (
-        <Table table={t} />
+      {tables.map((table) => (
+        <Table table={table} />
       ))}
     </div>
   );
