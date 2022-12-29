@@ -1,9 +1,9 @@
 export function toRecord<T, TId extends number | string>(
   list: T[],
-  getId: (t: T) => TId
+  getId: (t: T, index: number) => TId
 ) {
-  return list.reduce((c, i) => {
-    c[getId(i)] = i;
+  return list.reduce((c, item, index) => {
+    c[getId(item, index)] = item;
     return c;
   }, {} as Record<TId, T>);
 }

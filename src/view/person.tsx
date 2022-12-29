@@ -6,7 +6,6 @@ export function Person(p: { person: IPerson; happiness: number }) {
   return (
     <div
       style={{
-        width: 98,
         gridRowEnd: `span ${person.plusOne ? 2 : 1}`,
         backgroundColor: getColor(happiness),
         borderStyle: "solid",

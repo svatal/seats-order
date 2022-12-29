@@ -1,28 +1,6 @@
 import * as b from "bobril";
-import { IProp, useState } from "bobril";
-import { getHappiness } from "../alg/eval";
-import { peopleList } from "../data/model";
-import { sum, toRecord } from "../util";
-import { Tables } from "./tables";
-
-export function App() {
-  const happinessList = peopleList.map((p) => getHappiness(p.id));
-  const happiness = toRecord(happinessList, (_, i) => peopleList[i].id);
-  const ratio = useState(0.5);
-
-  return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "max-content auto",
-        gap: 20,
-      }}
-    >
-      <Happiness happinessList={happinessList} ratio={ratio} />
-      <Tables />
-    </div>
-  );
-}
+import { IProp } from "bobril";
+import { sum } from "../util";
 
 export function Happiness(p: {
   ratio: IProp<number>;
