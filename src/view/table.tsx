@@ -10,14 +10,22 @@ export function Table({ table }: { table: ITable }) {
     <div
       style={{
         width: 100,
-        height: table.seatCount * 20 + 20,
         backgroundColor: "lightGray",
       }}
     >
       <div style={{ height: 20 }}>Table #{table.id}</div>
-      {persons.map((p) => (
-        <Person person={p} happiness={getHappiness(p.id)} />
-      ))}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateRows: `repeat(${table.seatCount}, 20px)`,
+          gridTemplateColumns: "1fr",
+          gap: 2,
+        }}
+      >
+        {persons.map((p) => (
+          <Person person={p} happiness={getHappiness(p.id)} />
+        ))}
+      </div>
     </div>
   );
 }

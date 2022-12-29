@@ -7,8 +7,7 @@ export function Person(p: { person: IPerson; happiness: number }) {
     <div
       style={{
         width: 98,
-        height: person.plusOne ? 38 : 18,
-        // backgroundColor: "gray",
+        gridRowEnd: `span ${person.plusOne ? 2 : 1}`,
         backgroundColor: getColor(happiness),
         borderStyle: "solid",
         borderColor: "black",

@@ -9,6 +9,7 @@ export function App() {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
+        alignItems: "flex-start",
         gap: 10,
       }}
     >
