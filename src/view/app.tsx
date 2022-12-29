@@ -2,7 +2,6 @@ import * as b from "bobril";
 import { useState } from "bobril";
 import { getHappiness } from "../alg/eval";
 import { peopleList, seating, tableList } from "../data/model";
-import { toRecord } from "../util";
 import { Happiness } from "./happiness";
 import { Tables } from "./tables";
 

@@ -14,6 +14,7 @@ export function Happiness(p: {
   return (
     <div>
       <div>
+        avg {r.toFixed(2)}
         <input
           type="range"
           min="0"
@@ -22,7 +23,7 @@ export function Happiness(p: {
           value={r}
           onChange={(v) => ratio(+v)}
         />
-        {r.toFixed(2)}
+        {(1 - r).toFixed(2)} min
       </div>
       <div>min happiness: {minHappiness.toFixed(2)}</div>
       <div>avg happiness: {avgHappiness.toFixed(2)}</div>
