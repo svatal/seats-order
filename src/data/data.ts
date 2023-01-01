@@ -23,3 +23,5 @@ export interface IDepartment {
   id: number;
   name: string;
 }
+
+export type Seating = Record<number, number | undefined>;

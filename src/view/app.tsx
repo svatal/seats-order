@@ -8,7 +8,7 @@ import { Tables } from "./tables";
 export function App() {
   const peopleWithHappiness = peopleList.map((p) => ({
     ...p,
-    happiness: getHappiness(p.id),
+    happiness: getHappiness(p.id, seating),
   }));
   const ratio = useState(0.5);
 

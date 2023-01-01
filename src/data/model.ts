@@ -1,5 +1,5 @@
 import { createArray, toRecord } from "../util";
-import { IPerson, ITable } from "./data";
+import { ITable, Seating } from "./data";
 
 export const tableList: ITable[] = [
   { id: 1, seatCount: 8 },
@@ -75,4 +75,4 @@ export const peopleList = teams
 
 export const people = toRecord(peopleList, (p) => p.id);
 
-export const seating: Record<number, number | undefined> = {};
+export const seating: Seating = {};
