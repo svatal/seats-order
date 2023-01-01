@@ -1,4 +1,4 @@
-import { peopleList, seating, tableList, tables } from "../data/model";
+import { peopleList, seating, tableList } from "../data/model";
 
 export function initSeats() {
   const seatsTaken: Record<number, number> = {};

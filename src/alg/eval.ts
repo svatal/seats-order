@@ -31,3 +31,10 @@ function getTeamMates(personId: number) {
   const teamId = people[personId].teamId;
   return peopleList.filter((p) => p.teamId === teamId && p.id !== personId);
 }
+
+export function getResultHappiness(happinessList: number[], ratio: number) {
+  const minHappiness = Math.min(...happinessList);
+  const avgHappiness = happinessList.reduce(sum, 0) / happinessList.length;
+  const resultHappiness = ratio * avgHappiness + (1 - ratio) * minHappiness;
+  return { minHappiness, avgHappiness, resultHappiness };
+}

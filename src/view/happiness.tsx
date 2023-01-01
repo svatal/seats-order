@@ -1,16 +1,17 @@
 import * as b from "bobril";
 import { IProp } from "bobril";
-import { sum } from "../util";
+import { getResultHappiness } from "../alg/eval";
 
 export function Happiness(p: {
   ratio: IProp<number>;
   happinessList: number[];
 }) {
   const { ratio, happinessList } = p;
-  const minHappiness = Math.min(...happinessList);
-  const avgHappiness = happinessList.reduce(sum, 0) / happinessList.length;
   const r = ratio();
-  const resultHappiness = r * avgHappiness + (1 - r) * minHappiness;
+  const { minHappiness, avgHappiness, resultHappiness } = getResultHappiness(
+    happinessList,
+    r
+  );
   return (
     <div>
       <div>
